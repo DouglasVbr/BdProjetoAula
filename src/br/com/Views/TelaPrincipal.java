@@ -25,17 +25,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        Menu = new javax.swing.JMenu();
+        MenuCadastro = new javax.swing.JMenu();
         SubMenuCDUsu = new javax.swing.JMenuItem();
         SubMenuCDC = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        MenuAgenda = new javax.swing.JMenu();
+        SubMenuCompromissos = new javax.swing.JMenuItem();
+        SubMenuEventos = new javax.swing.JMenuItem();
+        MenuSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TelaPrincipal");
         setResizable(false);
 
-        Menu.setText("Cadastro");
+        MenuCadastro.setText("Cadastro");
 
         SubMenuCDUsu.setText("Cadastro de Usuários");
         SubMenuCDUsu.addActionListener(new java.awt.event.ActionListener() {
@@ -43,7 +45,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 SubMenuCDUsuActionPerformed(evt);
             }
         });
-        Menu.add(SubMenuCDUsu);
+        MenuCadastro.add(SubMenuCDUsu);
 
         SubMenuCDC.setText("Cadastro de Clientes");
         SubMenuCDC.addActionListener(new java.awt.event.ActionListener() {
@@ -51,15 +53,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 SubMenuCDCActionPerformed(evt);
             }
         });
-        Menu.add(SubMenuCDC);
+        MenuCadastro.add(SubMenuCDC);
 
-        jMenuBar1.add(Menu);
+        jMenuBar1.add(MenuCadastro);
 
-        jMenu2.setText("Agenda");
-        jMenuBar1.add(jMenu2);
+        MenuAgenda.setText("Agenda");
 
-        jMenu3.setText("Sair");
-        jMenuBar1.add(jMenu3);
+        SubMenuCompromissos.setText("compromissos");
+        SubMenuCompromissos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubMenuCompromissosActionPerformed(evt);
+            }
+        });
+        MenuAgenda.add(SubMenuCompromissos);
+
+        SubMenuEventos.setText("eventos");
+        SubMenuEventos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubMenuEventosActionPerformed(evt);
+            }
+        });
+        MenuAgenda.add(SubMenuEventos);
+
+        jMenuBar1.add(MenuAgenda);
+
+        MenuSair.setText("Sair");
+        MenuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuSairActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(MenuSair);
 
         setJMenuBar(jMenuBar1);
 
@@ -79,12 +103,44 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubMenuCDUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubMenuCDUsuActionPerformed
-        // TODO add your handling code here:
+          // Crie uma nova instância da tela de cadastro de usuário
+    TeladeCadastrodeUsuários teladeCadastrodeUsuários = new TeladeCadastrodeUsuários();
+    
+    // Defina a visibilidade da tela de cadastro como verdadeira
+    teladeCadastrodeUsuários.setVisible(true);
     }//GEN-LAST:event_SubMenuCDUsuActionPerformed
 
     private void SubMenuCDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubMenuCDCActionPerformed
-        // TODO add your handling code here:
+        TeladeCadastrodeClientes teladeCadastrodeClientes = new TeladeCadastrodeClientes();
+    
+    // Defina a visibilidade da tela de cadastro como verdadeira
+    teladeCadastrodeClientes.setVisible(true);
+        
     }//GEN-LAST:event_SubMenuCDCActionPerformed
+
+    private void SubMenuCompromissosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubMenuCompromissosActionPerformed
+        TelaAgenda telaAgenda = new TelaAgenda();
+    
+    // Defina a visibilidade da tela de cadastro como verdadeira
+    telaAgenda.setVisible(true);
+        
+    }//GEN-LAST:event_SubMenuCompromissosActionPerformed
+
+    private void SubMenuEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubMenuEventosActionPerformed
+        TelaAgenda telaAgenda = new TelaAgenda();
+    
+    // Defina a visibilidade da tela de cadastro como verdadeira
+    telaAgenda.setVisible(true);
+    }//GEN-LAST:event_SubMenuEventosActionPerformed
+
+    private void MenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSairActionPerformed
+         // Fecha a tela principal
+    this.dispose(); // Fecha a janela atual (tela principal)
+    
+    // Abre a tela de login
+    TelaLogin telaLogin = new TelaLogin();
+    telaLogin.setVisible(true);
+    }//GEN-LAST:event_MenuSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,11 +178,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Menu;
+    private javax.swing.JMenu MenuAgenda;
+    private javax.swing.JMenu MenuCadastro;
+    private javax.swing.JMenu MenuSair;
     private javax.swing.JMenuItem SubMenuCDC;
     private javax.swing.JMenuItem SubMenuCDUsu;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem SubMenuCompromissos;
+    private javax.swing.JMenuItem SubMenuEventos;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,7 +2,7 @@
 package br.com.DAO;
 
 
-import DTO.Usuario;
+import DTO.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class UsuarioDAO {
 
-    public void adicionarUsuario(Usuario usuario) {
+    public void adicionarUsuario(UsuarioDTO usuario) {
         String sql = "INSERT INTO usuarios (nome, email, nome_usuario, senha) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = Conexao.conectar();
@@ -29,16 +29,16 @@ public class UsuarioDAO {
         }
     }
 
-    public List<Usuario> listarUsuarios() {
+    public List<UsuarioDTO> listarUsuarios() {
         String sql = "SELECT * FROM usuarios";
-        List<Usuario> usuarios = new ArrayList<>();
+        List<UsuarioDTO> usuarios = new ArrayList<>();
 
         try (Connection conn = Conexao.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Usuario usuario = new Usuario();
+                UsuarioDTO usuario = new UsuarioDTO();
                 usuario.setId(rs.getInt("id"));
                 usuario.setNome(rs.getString("nome"));
                 usuario.setEmail(rs.getString("email"));
