@@ -169,31 +169,43 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void logar() {
 
-        String sql = "select * from tb_usuarios where login = ? and senha = ? ";
+    String sql = "select * from tb_usuarios where login = ? and senha = ? ";
+    try {
+
+        // Preparar a consulta no banco, em função do que foi inserido nas caixas de texto
+        pst = conexao.prepareStatement(sql);
+        pst.setString(1, txtUsuario.getText());
+        pst.setString(2, txtSenha.getText());
+
+        // Executar a query
+        rs = pst.executeQuery();
+
+        // Verifica se existe usuário
+        if (rs.next()) {
+            // Abrir a tela principal
+            TelaPrincipal principal = new TelaPrincipal();
+            principal.setVisible(true);
+            
+            // Fechar a tela de login
+            this.dispose();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválidos");
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Erro no método logar: " + e);
+    } finally {
+        // Fechar a conexão com o banco de dados para liberar recursos
         try {
-
-            // preparar a consulta no banco,  em função ao que foi inserido nas caixas de texto
-            pst = conexao.prepareStatement(sql);
-            pst.setString(1, txtUsuario.getText());
-            pst.setString(2, txtSenha.getText());
-
-            //execultar a query 
-            rs = pst.executeQuery();
-            // verifica se ixiste usuario 
-            if (rs.next()) {
-                TelaPrincipal Principal = new TelaPrincipal();
-                Principal.setVisible(true);
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario e/ ou senha invalidos");
-
-            }
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, "Método logar" + e);
-
+            if (rs != null) rs.close();
+            if (pst != null) pst.close();
+            if (conexao != null) conexao.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao fechar conexão: " + ex);
         }
     }
+
+
 
     
