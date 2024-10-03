@@ -12,13 +12,11 @@ public class ConexaoDAO {
 
     public static Connection conector() {
 
-        
-
         java.sql.Connection conexao = null;
 
         String driver = "com.mysql.jdbc.Driver";
 
-        String url = "jdbc:mysql://localhost:3306/sistema_gerenciamento";
+        String url = "jdbc:mysql://localhost:3306/bdprojetoaula";
 
         String user = "root";
 

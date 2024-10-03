@@ -1,10 +1,14 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.Views;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+/**
+ *
+ * @author aluno.saolucas
+ */
 public class TelaPrincipal extends javax.swing.JFrame {
 
     /**
@@ -26,64 +30,56 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastro = new javax.swing.JMenu();
-        SubMenuCDUsu = new javax.swing.JMenuItem();
-        SubMenuCDC = new javax.swing.JMenuItem();
-        MenuAgenda = new javax.swing.JMenu();
-        SubMenuCompromissos = new javax.swing.JMenuItem();
-        SubMenuEventos = new javax.swing.JMenuItem();
-        MenuSair = new javax.swing.JMenu();
+        SubMenuUsuario = new javax.swing.JMenuItem();
+        SubMenuCliente = new javax.swing.JMenuItem();
+        MenuOpcoes = new javax.swing.JMenu();
+        SubMenuSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TelaPrincipal");
         setResizable(false);
 
         MenuCadastro.setText("Cadastro");
-
-        SubMenuCDUsu.setText("Cadastro de Usuários");
-        SubMenuCDUsu.addActionListener(new java.awt.event.ActionListener() {
+        MenuCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubMenuCDUsuActionPerformed(evt);
+                MenuCadastroActionPerformed(evt);
             }
         });
-        MenuCadastro.add(SubMenuCDUsu);
 
-        SubMenuCDC.setText("Cadastro de Clientes");
-        SubMenuCDC.addActionListener(new java.awt.event.ActionListener() {
+        SubMenuUsuario.setText("Usuarios");
+        SubMenuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubMenuCDCActionPerformed(evt);
+                SubMenuUsuarioActionPerformed(evt);
             }
         });
-        MenuCadastro.add(SubMenuCDC);
+        MenuCadastro.add(SubMenuUsuario);
+
+        SubMenuCliente.setText("Clientes");
+        SubMenuCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubMenuClienteActionPerformed(evt);
+            }
+        });
+        MenuCadastro.add(SubMenuCliente);
 
         jMenuBar1.add(MenuCadastro);
 
-        MenuAgenda.setText("Agenda");
-
-        SubMenuCompromissos.setText("compromissos");
-        SubMenuCompromissos.addActionListener(new java.awt.event.ActionListener() {
+        MenuOpcoes.setText("Opções");
+        MenuOpcoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubMenuCompromissosActionPerformed(evt);
+                MenuOpcoesActionPerformed(evt);
             }
         });
-        MenuAgenda.add(SubMenuCompromissos);
 
-        SubMenuEventos.setText("eventos");
-        SubMenuEventos.addActionListener(new java.awt.event.ActionListener() {
+        SubMenuSair.setText("Sair");
+        SubMenuSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubMenuEventosActionPerformed(evt);
+                SubMenuSairActionPerformed(evt);
             }
         });
-        MenuAgenda.add(SubMenuEventos);
+        MenuOpcoes.add(SubMenuSair);
 
-        jMenuBar1.add(MenuAgenda);
-
-        MenuSair.setText("Sair");
-        MenuSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuSairActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(MenuSair);
+        jMenuBar1.add(MenuOpcoes);
 
         setJMenuBar(jMenuBar1);
 
@@ -91,7 +87,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,45 +98,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SubMenuCDUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubMenuCDUsuActionPerformed
-          // Crie uma nova instância da tela de cadastro de usuário
-    TeladeCadastrodeUsuários teladeCadastrodeUsuários = new TeladeCadastrodeUsuários();
-    
-    // Defina a visibilidade da tela de cadastro como verdadeira
-    teladeCadastrodeUsuários.setVisible(true);
-    }//GEN-LAST:event_SubMenuCDUsuActionPerformed
+    private void MenuCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuCadastroActionPerformed
 
-    private void SubMenuCDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubMenuCDCActionPerformed
-        TeladeCadastrodeClientes teladeCadastrodeClientes = new TeladeCadastrodeClientes();
-    
-    // Defina a visibilidade da tela de cadastro como verdadeira
-    teladeCadastrodeClientes.setVisible(true);
+    private void SubMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubMenuUsuarioActionPerformed
+        TelaUsuario tUsuarios = new TelaUsuario();
+        tUsuarios.setVisible(true);
         
-    }//GEN-LAST:event_SubMenuCDCActionPerformed
+    }//GEN-LAST:event_SubMenuUsuarioActionPerformed
 
-    private void SubMenuCompromissosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubMenuCompromissosActionPerformed
-        TelaAgenda telaAgenda = new TelaAgenda();
-    
-    // Defina a visibilidade da tela de cadastro como verdadeira
-    telaAgenda.setVisible(true);
-        
-    }//GEN-LAST:event_SubMenuCompromissosActionPerformed
+    private void SubMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubMenuSairActionPerformed
+             this.setVisible(false);
+             
+    }//GEN-LAST:event_SubMenuSairActionPerformed
 
-    private void SubMenuEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubMenuEventosActionPerformed
-        TelaAgenda telaAgenda = new TelaAgenda();
-    
-    // Defina a visibilidade da tela de cadastro como verdadeira
-    telaAgenda.setVisible(true);
-    }//GEN-LAST:event_SubMenuEventosActionPerformed
+    private void MenuOpcoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOpcoesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuOpcoesActionPerformed
 
-    private void MenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSairActionPerformed
-         // Fecha a tela principal
-    this.dispose(); // Fecha a janela atual (tela principal)
-    
-    // Abre a tela de login
-    TelaLogin telaLogin = new TelaLogin();
-    telaLogin.setVisible(true);
-    }//GEN-LAST:event_MenuSairActionPerformed
+    private void SubMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubMenuClienteActionPerformed
+         TelaClientes tCliente = new TelaClientes();
+        tCliente.setVisible(true);
+    }//GEN-LAST:event_SubMenuClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,13 +158,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu MenuAgenda;
     private javax.swing.JMenu MenuCadastro;
-    private javax.swing.JMenu MenuSair;
-    private javax.swing.JMenuItem SubMenuCDC;
-    private javax.swing.JMenuItem SubMenuCDUsu;
-    private javax.swing.JMenuItem SubMenuCompromissos;
-    private javax.swing.JMenuItem SubMenuEventos;
+    private javax.swing.JMenu MenuOpcoes;
+    private javax.swing.JMenuItem SubMenuCliente;
+    private javax.swing.JMenuItem SubMenuSair;
+    private javax.swing.JMenuItem SubMenuUsuario;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
