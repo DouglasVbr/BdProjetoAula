@@ -33,6 +33,44 @@ public class TelaLogin extends javax.swing.JFrame {
             lblStatus.setIcon(iconedesconectado);
         }
     }
+    
+    private void logar() {
+
+    String sql = "select * from tb_usuarios where login = ? and senha = ? ";
+    try {
+
+        // preparar a consulta no banco,  em função ao que foi inserido nas caixas de texto
+        pst = conexao.prepareStatement(sql);
+        pst.setString(1, txtUsuario.getText());
+        pst.setString(2, txtSenha.getText());
+
+        // executar a query 
+        rs = pst.executeQuery();
+        // verifica se existe usuario 
+        if (rs.next()) {
+            // Fechar a tela de login antes de abrir a tela principal
+            this.dispose();
+            TelaPrincipal Principal = new TelaPrincipal();
+            Principal.setVisible(true);
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválidos");
+        }
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Método logar: " + e);
+    } finally {
+        // Fechar o ResultSet, PreparedStatement e conexão
+        try {
+            if (rs != null) rs.close();
+            if (pst != null) pst.close();
+            if (conexao != null) conexao.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,34 +206,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    private void logar() {
-
-        String sql = "select * from tb_usuarios where login = ? and senha = ? ";
-        try {
-
-            // preparar a consulta no banco,  em função ao que foi inserido nas caixas de texto
-            pst = conexao.prepareStatement(sql);
-            pst.setString(1, txtUsuario.getText());
-            pst.setString(2, txtSenha.getText());
-
-            //execultar a query 
-            rs = pst.executeQuery();
-            // verifica se ixiste usuario 
-            if (rs.next()) {
-                TelaPrincipal Principal = new TelaPrincipal();
-                Principal.setVisible(true);
-                
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario e/ ou senha invalidos");
-
-            }
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, "Método logar" + e);
-
-        }
-    }
+}
 
     

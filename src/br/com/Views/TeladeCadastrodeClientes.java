@@ -6,6 +6,8 @@
 package br.com.Views;
 
 import DTO.ClienteDTO;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author Joel
  */
 public class TeladeCadastrodeClientes extends javax.swing.JFrame {
+    private List<ClienteDTO> listaClientes = new ArrayList<>();  // Criando a lista de clientes
 
     /**
      * Creates new form TeladeCadastrodeClientes
@@ -201,88 +204,76 @@ public class TeladeCadastrodeClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFieldCpfActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-         // Captura os valores dos campos de texto
-    String nome = TextFieldNome.getText();
-    String endereco = TextFieldEndereco.getText();
-    String telefone = TextFieldTelefone.getText();
-    String email = TextFieldEmail.getText();
-    String cpf = TextFieldCpf.getText();
+        String nome = TextFieldNome.getText();
+        String endereco = TextFieldEndereco.getText();
+        String telefone = TextFieldTelefone.getText();
+        String email = TextFieldEmail.getText();
+        String cpf = TextFieldCpf.getText();
 
-    // Validação básica para evitar campos vazios
-    if(nome.isEmpty() || cpf.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Nome e CPF são obrigatórios!");
-        return;
-    }
-
-    // Verificação de duplicidade (CPF)
-    for (ClienteDTO cliente : listaClientes) {
-        if (cliente.getCpf().equals(cpf)) {
-            JOptionPane.showMessageDialog(this, "Cliente com este CPF já existe!");
+        if (nome.isEmpty() || cpf.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nome e CPF são obrigatórios!");
             return;
         }
-    }
 
-    // Criação do novo cliente
-    ClienteDTO novoCliente = new ClienteDTO(nome, endereco, telefone, email, cpf);
-    listaClientes.add(novoCliente);  // Supondo uma lista chamada listaClientes
+        for (ClienteDTO cliente : listaClientes) {
+            if (cliente.getCpf().equals(cpf)) {
+                JOptionPane.showMessageDialog(this, "Cliente com este CPF já existe!");
+                return;
+            }
+        }
 
-    // Atualiza a interface ou tabela (não especificada no código original)
-    JOptionPane.showMessageDialog(this, "Cliente inserido com sucesso!");
+        ClienteDTO novoCliente = new ClienteDTO(nome, endereco, telefone, email, cpf);
+        listaClientes.add(novoCliente);
 
-    // Limpar os campos
-    limparCampos();
+        JOptionPane.showMessageDialog(this, "Cliente inserido com sucesso!");
+        limparCampos();
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-         String cpf = TextFieldCpf.getText();
+           String cpf = TextFieldCpf.getText();
 
-    // Procura o cliente pelo CPF
-    for (ClienteDTO cliente : listaClientes) {
-        if (cliente.getCpf().equals(cpf)) {
-            // Atualiza os dados do cliente
-            cliente.setNome(TextFieldNome.getText());
-            cliente.setEndereco(TextFieldEndereco.getText());
-            cliente.setTelefone(TextFieldTelefone.getText());
-            cliente.setEmail(TextFieldEmail.getText());
+        for (ClienteDTO cliente : listaClientes) {
+            if (cliente.getCpf().equals(cpf)) {
+                cliente.setNome(TextFieldNome.getText());
+                cliente.setEndereco(TextFieldEndereco.getText());
+                cliente.setTelefone(TextFieldTelefone.getText());
+                cliente.setEmail(TextFieldEmail.getText());
 
-            JOptionPane.showMessageDialog(this, "Cliente editado com sucesso!");
-            limparCampos();
-            return;
+                JOptionPane.showMessageDialog(this, "Cliente editado com sucesso!");
+                limparCampos();
+                return;
+            }
         }
-    }
 
-    // Caso o cliente não seja encontrado
-    JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
+        JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-         String cpf = TextFieldCpf.getText();
+        String cpf = TextFieldCpf.getText();
 
-    // Procura e remove o cliente da lista
-    for (ClienteDTO cliente : listaClientes) {
-        if (cliente.getCpf().equals(cpf)) {
-            listaClientes.remove(cliente);
-            JOptionPane.showMessageDialog(this, "Cliente excluído com sucesso!");
-            limparCampos();
-            return;
+        for (ClienteDTO cliente : listaClientes) {
+            if (cliente.getCpf().equals(cpf)) {
+                listaClientes.remove(cliente);
+                JOptionPane.showMessageDialog(this, "Cliente excluído com sucesso!");
+                limparCampos();
+                return;
+            }
         }
-    }
 
-    // Caso o cliente não seja encontrado
-    JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
+        JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        limparCampos();
-    JOptionPane.showMessageDialog(this, "Operação cancelada.");
+         limparCampos();
+        JOptionPane.showMessageDialog(this, "Operação cancelada.");
 }
 
 private void limparCampos() {
-    TextFieldNome.setText("");
-    TextFieldEndereco.setText("");
-    TextFieldTelefone.setText("");
-    TextFieldEmail.setText("");
-    TextFieldCpf.setText("");
+     TextFieldNome.setText("");
+        TextFieldEndereco.setText("");
+        TextFieldTelefone.setText("");
+        TextFieldEmail.setText("");
+        TextFieldCpf.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
@@ -337,7 +328,5 @@ private void limparCampos() {
     private javax.swing.JButton btnInserir;
     // End of variables declaration//GEN-END:variables
 
-    private void limparCampos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

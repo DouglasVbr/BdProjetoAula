@@ -1,11 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.Views;
 
 import DTO.UsuarioDTO;
+import DAO.ConexaoDAO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,12 +15,35 @@ import javax.swing.JOptionPane;
  * @author Joel
  */
 public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
+    
+    private ArrayList<UsuarioDTO> listaUsuarios = new ArrayList<>();
 
     /**
      * Creates new form TeladeCadastrodeUsuários
      */
     public TeladeCadastrodeUsuários() {
         initComponents();
+        carregarUsuariosDoBanco();
+    }
+    
+    private void carregarUsuariosDoBanco() {
+        try (Connection conn = ConexaoDAO.conectar()) {
+            String sql = "SELECT * FROM usuarios";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                UsuarioDTO usuario = new UsuarioDTO(
+                    rs.getString("nome"),
+                    rs.getString("email"),
+                    rs.getString("nomeDeUsuario"),
+                    rs.getString("senha")
+                );
+                listaUsuarios.add(usuario);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar usuários do banco de dados: " + e.getMessage());
+        }
     }
 
     /**
@@ -186,78 +211,95 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
     }//GEN-LAST:event_PasswordSenhaActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-         // Captura os valores dos campos de texto
-    String nome = TextFieldNome.getText();
-    String email = TextFieldEmail.getText();
-    String nomeDeUsuario = TextFieldNomeUsu.getText();
-    String senha = new String(PasswordSenha.getPassword());
+          String nome = TextFieldNome.getText();
+        String email = TextFieldEmail.getText();
+        String nomeDeUsuario = TextFieldNomeUsu.getText();
+        String senha = new String(PasswordSenha.getPassword());
 
-    // Validação básica para evitar campos vazios
-    if(nome.isEmpty() || nomeDeUsuario.isEmpty() || senha.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Nome, Nome de Usuário e Senha são obrigatórios!");
-        return;
-    }
-
-    // Verificação de duplicidade (Nome de Usuário)
-    for (UsuarioDTO usuario : listaUsuarios) {
-        if (usuario.getNomeDeUsuario().equals(nomeDeUsuario)) {
-            JOptionPane.showMessageDialog(this, "Nome de Usuário já existe!");
+        if (nome.isEmpty() || nomeDeUsuario.isEmpty() || senha.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nome, Nome de Usuário e Senha são obrigatórios!");
             return;
         }
-    }
 
-    // Criação do novo usuário
-    UsuarioDTO novoUsuario = new UsuarioDTO(nome, email, nomeDeUsuario, senha);
-    listaUsuarios.add(novoUsuario);  // Supondo uma lista chamada listaUsuarios
+        for (UsuarioDTO usuario : listaUsuarios) {
+            if (usuario.getNomeDeUsuario().equals(nomeDeUsuario)) {
+                JOptionPane.showMessageDialog(this, "Nome de Usuário já existe!");
+                return;
+            }
+        }
 
-    JOptionPane.showMessageDialog(this, "Usuário inserido com sucesso!");
+        try (Connection conn = ConexaoDAO.conectar()) {
+            String sql = "INSERT INTO usuarios (nome, email, nomeDeUsuario, senha) VALUES (?, ?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nome);
+            stmt.setString(2, email);
+            stmt.setString(3, nomeDeUsuario);
+            stmt.setString(4, senha);
+            stmt.executeUpdate();
 
-    // Limpar os campos
-    limparCampos();
+            JOptionPane.showMessageDialog(this, "Usuário inserido com sucesso!");
+            listaUsuarios.add(new UsuarioDTO(nome, email, nomeDeUsuario, senha));
+            limparCampos();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao inserir usuário no banco de dados: " + e.getMessage());
+        }
 
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
          String nomeDeUsuario = TextFieldNomeUsu.getText();
 
-    // Busca o usuário pelo nome de usuário
-    for (UsuarioDTO usuario : listaUsuarios) {
-        if (usuario.getNomeDeUsuario().equals(nomeDeUsuario)) {
-            // Atualiza os dados
-            usuario.setNome(TextFieldNome.getText());
-            usuario.setEmail(TextFieldEmail.getText());
-            usuario.setSenha(new String(PasswordSenha.getPassword()));
+        try (Connection conn = ConexaoDAO.conectar()) {
+            String sql = "UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE nomeDeUsuario = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, TextFieldNome.getText());
+            stmt.setString(2, TextFieldEmail.getText());
+            stmt.setString(3, new String(PasswordSenha.getPassword()));
+            stmt.setString(4, nomeDeUsuario);
 
-            JOptionPane.showMessageDialog(this, "Usuário editado com sucesso!");
-            limparCampos();
-            return;
+            if (stmt.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(this, "Usuário editado com sucesso!");
+                limparCampos();
+                carregarUsuariosDoBanco(); // Atualiza a lista local
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuário não encontrado!");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao editar usuário no banco de dados: " + e.getMessage());
         }
-    }
-
-    // Caso o usuário não seja encontrado
-    JOptionPane.showMessageDialog(this, "Usuário não encontrado!");
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-         String nomeDeUsuario = TextFieldNomeUsu.getText();
+           String nomeDeUsuario = TextFieldNomeUsu.getText();
 
-    // Busca e remove o usuário
-    for (UsuarioDTO usuario : listaUsuarios) {
-        if (usuario.getNomeDeUsuario().equals(nomeDeUsuario)) {
-            listaUsuarios.remove(usuario);
-            JOptionPane.showMessageDialog(this, "Usuário excluído com sucesso!");
-            limparCampos();
-            return;
-        }
+    if(nomeDeUsuario.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Nome de Usuário é obrigatório!");
+        return;
     }
 
-    // Caso o usuário não seja encontrado
-    JOptionPane.showMessageDialog(this, "Usuário não encontrado!");
+    try (Connection conn = ConexaoDAO.conectar()) {
+        String sql = "DELETE FROM usuarios WHERE nomeDeUsuario = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, nomeDeUsuario);
+
+        int deleted = pstmt.executeUpdate();
+        if(deleted > 0) {
+            JOptionPane.showMessageDialog(this, "Usuário excluído com sucesso!");
+
+            // Busca e remove o usuário da lista local
+            listaUsuarios.removeIf(usuario -> usuario.getNomeDeUsuario().equals(nomeDeUsuario));
+            limparCampos();
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuário não encontrado!");
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Erro ao excluir usuário: " + e.getMessage());
+    }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-         limparCampos();
-    JOptionPane.showMessageDialog(this, "Operação cancelada.");
+          limparCampos();
+        JOptionPane.showMessageDialog(this, "Operação cancelada.");
 }
 
 private void limparCampos() {
@@ -317,7 +359,5 @@ private void limparCampos() {
     private javax.swing.JLabel lblSenha;
     // End of variables declaration//GEN-END:variables
 
-    private void limparCampos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 }

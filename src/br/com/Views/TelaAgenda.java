@@ -16,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Joel
  */
 public class TelaAgenda extends javax.swing.JFrame {
+    private List<CompromissoDTO> listaCompromissos = new ArrayList<>();
+    
 
     /**
      * Creates new form TelaAgenda
@@ -23,6 +25,43 @@ public class TelaAgenda extends javax.swing.JFrame {
     public TelaAgenda() {
         initComponents();
     }
+    
+    private List<CompromissoDTO> compromissosFiltrados = new ArrayList<>();
+
+private void filtrarCompromissosPorIntervalo(String intervalo) {
+    compromissosFiltrados.clear(); // Limpa a lista de compromissos filtrados
+
+    for (CompromissoDTO compromisso : listaCompromissos) {
+        // Supondo que tenha métodos para obter a data do compromisso e realizar a filtragem
+        if (intervalo.equals("dia")) {
+            // Lógica para filtrar por dia
+            compromissosFiltrados.add(compromisso); // Adiciona à lista filtrada se a lógica for satisfeita
+        } else if (intervalo.equals("semana")) {
+            // Lógica para filtrar por semana
+            compromissosFiltrados.add(compromisso);
+        } else if (intervalo.equals("mes")) {
+            // Lógica para filtrar por mês
+            compromissosFiltrados.add(compromisso);
+        }
+    }
+
+    // Atualiza a tabela com os compromissos filtrados
+    atualizarTabela(compromissosFiltrados);
+}
+
+private void atualizarTabela(List<CompromissoDTO> compromissos) {
+    DefaultTableModel model = (DefaultTableModel) jTableDHDC.getModel();
+    model.setRowCount(0); // Limpa a tabela
+
+    for (CompromissoDTO compromisso : compromissos) {
+        Object[] row = {compromisso.getData(), compromisso.getHorario(), compromisso.getDescricao(), compromisso.getClienteAssociado()};
+        model.addRow(row); // Adiciona nova linha à tabela
+    }
+}
+
+
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -340,43 +379,6 @@ private void limparCampos() {
          atualizarTabela(listaCompromissos);  // Carrega todos os compromissos na tabela
     }//GEN-LAST:event_jTableDHDCAncestorAdded
 
-    private void filtrarCompromissosPorIntervalo(String intervalo) {
-    // Lógica de filtragem, exibir os compromissos na tabela
-    List<CompromissoDTO> compromissosFiltrados = new ArrayList<>();
-        Iterable<CompromissoDTO> listaCompromissos = null;
-    
-    // Supondo que há lógica para determinar o intervalo correto
-    for (CompromissoDTO compromisso : listaCompromissos) {
-        if (intervalo.equals("dia")) {
-            Object dataAtual = null;
-            // Comparar apenas a data atual
-            if (compromisso.getData().equals(dataAtual)) {
-                compromissosFiltrados.add(compromisso);
-            }
-        } else if (intervalo.equals("semana")) {
-            // Lógica para adicionar compromissos da semana
-        } else if (intervalo.equals("mes")) {
-            // Lógica para adicionar compromissos do mês
-        }
-    }
-    
-    atualizarTabela(compromissosFiltrados);
-}
-    
-    private void atualizarTabela(List<CompromissoDTO> compromissos) {
-    DefaultTableModel model = (DefaultTableModel) jTableDHDC.getModel();
-    model.setRowCount(0);  // Limpa a tabela
-
-    // Preenche a tabela com os compromissos filtrados
-    for (CompromissoDTO compromisso : compromissos) {
-        model.addRow(new Object[]{
-            compromisso.getData(),
-            compromisso.getHorario(),
-            compromisso.getDescricao(),
-            compromisso.getClienteAssociado()
-        });
-    }
-}
     /**
      * @param args the command line arguments
      */
@@ -432,15 +434,5 @@ private void limparCampos() {
     private javax.swing.JTable jTableDHDC;
     // End of variables declaration//GEN-END:variables
 
-    private void limparCampos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void atualizarTabela(List<CompromissoDTO> compromissosFiltrados) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void filtrarCompromissosPorIntervalo(String dia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-}
