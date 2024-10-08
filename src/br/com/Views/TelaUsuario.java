@@ -5,7 +5,9 @@
  */
 package br.com.Views;
 
+import DTO.UsuarioDTO;
 import br.com.DAO.ConexaoDAO;
+import br.com.DAO.UsuarioDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -81,6 +83,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         lblSenha = new javax.swing.JLabel();
         txtLogin = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
+        btnInserir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Usuarios");
@@ -101,27 +104,34 @@ public class TelaUsuario extends javax.swing.JFrame {
 
         lblSenha.setText("Senha");
 
+        btnInserir.setText("Inserir");
+        btnInserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblLogin)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelNome)
+                            .addComponent(jLabelId))
+                        .addComponent(txtIdUsuario)
+                        .addComponent(txtNomeUsuario)
+                        .addComponent(lblSenha)
+                        .addComponent(txtLogin)
+                        .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblLogin)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabelNome)
-                                .addComponent(jLabelId))
-                            .addComponent(txtIdUsuario)
-                            .addComponent(txtNomeUsuario)
-                            .addComponent(lblSenha)
-                            .addComponent(txtLogin)
-                            .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(btnPesquisar)))
+                        .addComponent(btnPesquisar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(513, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -144,7 +154,9 @@ public class TelaUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(btnPesquisar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPesquisar)
+                    .addComponent(btnInserir))
                 .addGap(113, 113, 113))
         );
 
@@ -159,6 +171,30 @@ public class TelaUsuario extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        // captura de dados na tela usuario 
+        int id_Usuario = Integer.parseInt (txtIdUsuario.getText());
+       String nome_usuario = txtNomeUsuario.getText();
+       String login_usuario = txtLogin.getText();
+       String senha_usuario = txtSenha.getText();
+       
+       
+       // transferencia de dados para usuarioDTO
+        UsuarioDTO objusuarioDTO = new UsuarioDTO();
+        objusuarioDTO.setIdUsuario(id_Usuario);
+        objusuarioDTO.setLogin(login_usuario);
+        objusuarioDTO.setSenha(senha_usuario);
+        objusuarioDTO.setUsuario(nome_usuario);
+         
+        
+        // criação do obj da classe UsuarioDAO para inserir o usuario 
+        UsuarioDAO objUsuarioDAO =  new UsuarioDAO();
+        objUsuarioDAO.adicionarUsuario(objusuarioDTO);
+        
+        
+       
+    }//GEN-LAST:event_btnInserirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,6 +232,7 @@ public class TelaUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInserir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelNome;

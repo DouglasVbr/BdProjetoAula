@@ -3,34 +3,57 @@ package DTO;
 
 
 public class UsuarioDTO {
-    private String nome;
-    private String email;
-    private String nomeDeUsuario;
+    private String Usuario;
+    private String Login;
     private String senha;
+    private int idUsuario;
 
-    public UsuarioDTO(String nome, String email, String nomeDeUsuario, String senha) {
-        this.nome = nome;
-        this.email = email;
-        this.nomeDeUsuario = nomeDeUsuario;
+    public UsuarioDTO(String Usuario, String Login, String senha, int idUsuario) {
+        this.Usuario = Usuario;
+        this.Login = Login;
         this.senha = senha;
+        this.idUsuario = idUsuario;
     }
 
-    // Getters e Setters
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
     
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
 
-    public String getNomeDeUsuario() { return nomeDeUsuario; }
-    public void setNomeDeUsuario(String nomeDeUsuario) { this.nomeDeUsuario = nomeDeUsuario; }
+    
 
-    public String getSenha() { return senha; }
-    public void setSenha(String senha) { this.senha = senha; }
+    // Getters e Setters
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
+    
+    public String getUsuario() { return Usuario; }
+    public void setUsuario(String Usuario) { this.Usuario = Usuario; }
+
+    public String getLogin() {
+        return Login;
+    }
+
+    public void setLogin(String Login) {
+        this.Login = Login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    
 
     @Override
     public String toString() {
-        return nome + " - " + nomeDeUsuario;
+        return Usuario + " - " + idUsuario;
     }
 }
 

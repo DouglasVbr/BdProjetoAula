@@ -11,20 +11,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAO {
+    
+    // classe onde vão ficar todos os métodos relacionados a consulta no banco
+    
+    Connection conexao = null;
+    PreparedStatement Pst = null;
+    ResultSet rs = null;
 
     public void adicionarUsuario(UsuarioDTO usuario) {
-        String sql = "INSERT INTO usuarios (nome, email, nome_usuario, senha) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO usuarios ( id_Usuario, nome, email, nome_usuario, senha) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = Conexao.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, usuario.getNome());
-            stmt.setString(2, usuario.getEmail());
-            stmt.setString(3, usuario.getNomeUsuario());
-            stmt.setString(4, usuario.getSenha());
+            
+            stmt.setInt(1, usuario.getIdUsuario());
+            stmt.setString(2, usuario.getLogin());
+            stmt.setString(3, usuario.getSenha());
+            stmt.setString(4, usuario.getUsuario());
+            
             stmt.executeUpdate();
 
         } catch (SQLException e) {
+            
             e.printStackTrace();
         }
     }
@@ -39,10 +47,10 @@ public class UsuarioDAO {
 
             while (rs.next()) {
                 UsuarioDTO usuario = new UsuarioDTO();
-                usuario.setId(rs.getInt("id"));
-                usuario.setNome(rs.getString("nome"));
-                usuario.setEmail(rs.getString("email"));
-                usuario.setNomeUsuario(rs.getString("nome_usuario"));
+                usuario.setIdUsuario(rs.getInt("id"));
+                usuario.setUsuario(rs.getString("nome"));
+                usuario.setLogin(rs.getString("login"));
+                usuario.setSenha(rs.getString("senha"));
                 usuarios.add(usuario);
             }
         } catch (SQLException e) {

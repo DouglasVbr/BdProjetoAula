@@ -2,7 +2,7 @@
 package br.com.Views;
 
 import DTO.UsuarioDTO;
-import DAO.ConexaoDAO;
+import br.com.DAO.ConexaoDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,7 +27,7 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
     }
     
     private void carregarUsuariosDoBanco() {
-        try (Connection conn = ConexaoDAO.conectar()) {
+        try (Connection conn = ConexaoDAO.conector()) {
             String sql = "SELECT * FROM usuarios";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
@@ -222,13 +222,13 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
         }
 
         for (UsuarioDTO usuario : listaUsuarios) {
-            if (usuario.getNomeDeUsuario().equals(nomeDeUsuario)) {
+            if (usuario.getUsuario().equals(nomeDeUsuario)) {
                 JOptionPane.showMessageDialog(this, "Nome de Usuário já existe!");
                 return;
             }
         }
 
-        try (Connection conn = ConexaoDAO.conectar()) {
+        try (Connection conn = ConexaoDAO.conector()) {
             String sql = "INSERT INTO usuarios (nome, email, nomeDeUsuario, senha) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, nome);
@@ -238,7 +238,7 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(this, "Usuário inserido com sucesso!");
-            listaUsuarios.add(new UsuarioDTO(nome, email, nomeDeUsuario, senha));
+            listaUsuarios.add(new UsuarioDTO("nome", "email", "nomeDeUsuario","senha"));
             limparCampos();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Erro ao inserir usuário no banco de dados: " + e.getMessage());
@@ -249,7 +249,7 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
          String nomeDeUsuario = TextFieldNomeUsu.getText();
 
-        try (Connection conn = ConexaoDAO.conectar()) {
+        try (Connection conn = ConexaoDAO.conector()) {
             String sql = "UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE nomeDeUsuario = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, TextFieldNome.getText());
@@ -277,7 +277,7 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
         return;
     }
 
-    try (Connection conn = ConexaoDAO.conectar()) {
+    try (Connection conn = ConexaoDAO.conector()) {
         String sql = "DELETE FROM usuarios WHERE nomeDeUsuario = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, nomeDeUsuario);
@@ -287,7 +287,7 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Usuário excluído com sucesso!");
 
             // Busca e remove o usuário da lista local
-            listaUsuarios.removeIf(usuario -> usuario.getNomeDeUsuario().equals(nomeDeUsuario));
+            listaUsuarios.removeIf(usuario -> usuario.getUsuario().equals(nomeDeUsuario));
             limparCampos();
         } else {
             JOptionPane.showMessageDialog(this, "Usuário não encontrado!");
