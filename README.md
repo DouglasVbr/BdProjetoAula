@@ -282,9 +282,44 @@ Registre um compromisso na agenda e associe-o a um cliente.
 
 ## mysql
 
-CREATE DATABASE sistema_gerenciamento;
 
-USE sistema_gerenciamento;
+-- Criar banco de dados
+create database ProjetoFinal;
+
+-- Escolher o banco que ira usar
+use ProjetoFinal;
+
+-- Criar tabela
+create table tb_usuarios(
+id_usuario int primary key,
+usuario varchar(50) not null,
+login varchar(50) not null unique,
+senha varchar(15)not null
+);
+
+-- Descrever a tabela
+describe tb_usuarios;
+
+-- Inserir dados na tabela(create)
+insert into tb_usuarios(id_usuario, usuario, login, senha)
+values(1, 'Douglas Vieira', 'DouglasV', '123456');
+
+insert into tb_usuarios(id_usuario, usuario, login, senha)
+values(2, 'administrador', 'admin', 'admin');
+
+-- selecionar itens da tabela(read)
+select * from tb_usuarios;
+
+
+-- editar itens da tabela(update)
+update tb_usuarios set usuario = 'Dunga' where id_usuario = 1;
+
+-- excluir um item da tabela(delete)
+delete from tb_usuarios where id_usuario = 1;
+
+
+
+
 
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -311,3 +346,9 @@ CREATE TABLE agenda (
     cliente_id INT,
     FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE CASCADE
 );
+
+insert into tb_usuarios(id_usuario, usuario, login, senha)
+values(3, 'Doug', 'Douglas', '123');
+
+
+
