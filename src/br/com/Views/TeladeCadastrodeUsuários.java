@@ -238,7 +238,7 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(this, "Usuário inserido com sucesso!");
-            listaUsuarios.add(new UsuarioDTO("nome", "email", "nomeDeUsuario","senha"));
+            listaUsuarios.add(new UsuarioDTO ("nome", "email", "nomeDeUsuario","senha"));
             limparCampos();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Erro ao inserir usuário no banco de dados: " + e.getMessage());

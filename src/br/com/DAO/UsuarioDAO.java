@@ -2,6 +2,7 @@
 package br.com.DAO;
 
 
+import DTO.Usuario;
 import DTO.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +10,41 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class UsuarioDAO {
+    
+    String sql = "delete from tbusuarios where id_usuario = ?";
+    Conexao = ConexaoDAO.conector();
+    
+    
+    
+    
+    
+    public void editar(){
+    
+        String sql = "update tb_usuarios set usuario = ?, login = ?, senha = ? where id_usuario = ?";
+                conexao = ConexaoDAO.conector();
+                try {
+                    Pst = conexao.prepareStatement(sql);
+                    Pst.setInt(1, Usuario.get());
+                    Pst.setString(2, usuario.getLogin());
+                    Pst.setString(3, usuario.getSenha());
+                    Pst.setString(4, usuario.getUsuario());
+                            
+                            
+               int add = Pst.executeUpdate();
+               if(add > 0 ){
+               
+                   conexao.close();
+               }
+                    
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null,"método editar" +  e);
+        }
+    }
     
     // classe onde vão ficar todos os métodos relacionados a consulta no banco
     
@@ -59,6 +93,14 @@ public class UsuarioDAO {
         return usuarios;
     }
 
-    // Métodos para atualizar e excluir usuários podem ser adicionados aqui.
+    public void editar(UsuarioDTO objUsuarioDTO) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void logar(UsuarioDTO objusuarioDTO) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 }
 

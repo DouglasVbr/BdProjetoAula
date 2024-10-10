@@ -1,7 +1,11 @@
 package br.com.Views;
 
+import DTO.UsuarioDTO;
 import java.sql.*;
 import br.com.DAO.ConexaoDAO;
+import br.com.DAO.UsuarioDAO;
+import static br.com.Views.TelaLogin.txtSenha;
+import static br.com.Views.TelaLogin.txtUsuario;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -155,7 +159,17 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-         this.dispose();
+         String login_usuario = new txtUsuario.getText();
+         String senha_usuario = new txtSenha.getText();
+         
+         UsuarioDTO objusuarioDTO = new UsuarioDTO();
+         objusuarioDTO.setLogin(login_usuario);
+         objusuarioDTO.setSenha(senha_usuario);
+         
+         UsuarioDAO objUsuarioDAO = new UsuarioDAO();
+         objUsuarioDAO.logar(objusuarioDTO);
+        
+        this.dispose();
         logar();
         
 
@@ -202,8 +216,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblStatus;
-    private javax.swing.JTextField txtSenha;
-    private javax.swing.JTextField txtUsuario;
+    public static javax.swing.JTextField txtSenha;
+    public static javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
 }

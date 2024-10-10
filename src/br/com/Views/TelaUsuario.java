@@ -84,6 +84,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         txtLogin = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
         btnInserir = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Usuarios");
@@ -111,6 +112,13 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
 
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,7 +140,9 @@ public class TelaUsuario extends javax.swing.JFrame {
                         .addComponent(btnPesquisar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(513, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnEditar)
+                .addContainerGap(432, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +166,8 @@ public class TelaUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPesquisar)
-                    .addComponent(btnInserir))
+                    .addComponent(btnInserir)
+                    .addComponent(btnEditar))
                 .addGap(113, 113, 113))
         );
 
@@ -174,7 +185,7 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
         // captura de dados na tela usuario 
-        int id_Usuario = Integer.parseInt (txtIdUsuario.getText());
+       int id_Usuario = Integer.parseInt (txtIdUsuario.getText());
        String nome_usuario = txtNomeUsuario.getText();
        String login_usuario = txtLogin.getText();
        String senha_usuario = txtSenha.getText();
@@ -195,6 +206,24 @@ public class TelaUsuario extends javax.swing.JFrame {
         
        
     }//GEN-LAST:event_btnInserirActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+       String id_Usuario = txtIdUsuario.getText();
+       String nome_usuario = txtNomeUsuario.getText();
+       String login_usuario = txtLogin.getText();
+       String senha_usuario = txtSenha.getText();
+       
+       UsuarioDTO objUsuarioDTO = new UsuarioDTO();
+       objUsuarioDTO.setIdUsuario(Integer.parseInt(id_Usuario));
+       objUsuarioDTO.setUsuario(nome_usuario);
+       objUsuarioDTO.setLogin(login_usuario);
+       objUsuarioDTO.setSenha(senha_usuario);
+       
+       UsuarioDAO objUsuarioDAO = new UsuarioDAO();
+       objUsuarioDAO.editar(objUsuarioDTO);
+       
+       
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,6 +261,7 @@ public class TelaUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnInserir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel jLabelId;
@@ -239,7 +269,7 @@ public class TelaUsuario extends javax.swing.JFrame {
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblSenha;
-    private javax.swing.JTextField txtIdUsuario;
+    public static javax.swing.JTextField txtIdUsuario;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JTextField txtNomeUsuario;
     private javax.swing.JPasswordField txtSenha;
