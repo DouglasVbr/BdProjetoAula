@@ -1,8 +1,5 @@
-
 package br.com.DAO;
 
-
-import DTO.Usuario;
 import DTO.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,96 +8,184 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import br.com.Views.TelaPrincipal;
+import br.com.Views.TelaUsuario;
+import br.com.Views.TeladeCadastrodeUsuários;
+import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 
 public class UsuarioDAO {
     
-    String sql = "delete from tbusuarios where id_usuario = ?";
-    Conexao = ConexaoDAO.conector();
-    
-    
-    
-    
-    
-    public void editar(){
-    
-        String sql = "update tb_usuarios set usuario = ?, login = ?, senha = ? where id_usuario = ?";
-                conexao = ConexaoDAO.conector();
-                try {
-                    Pst = conexao.prepareStatement(sql);
-                    Pst.setInt(1, Usuario.get());
-                    Pst.setString(2, usuario.getLogin());
-                    Pst.setString(3, usuario.getSenha());
-                    Pst.setString(4, usuario.getUsuario());
-                            
-                            
-               int add = Pst.executeUpdate();
-               if(add > 0 ){
-               
-                   conexao.close();
-               }
-                    
-            
-        } catch (Exception e) {
-            
-            JOptionPane.showMessageDialog(null,"método editar" +  e);
-        }
-    }
-    
-    // classe onde vão ficar todos os métodos relacionados a consulta no banco
-    
+    // Atributos para conexão com o banco de dados
     Connection conexao = null;
-    PreparedStatement Pst = null;
+    PreparedStatement pst = null;
     ResultSet rs = null;
 
+    // Método para adicionar um usuário no banco
     public void adicionarUsuario(UsuarioDTO usuario) {
-        String sql = "INSERT INTO usuarios ( id_Usuario, nome, email, nome_usuario, senha) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO usuarios (id_usuario, nome, email, nome_usuario, senha) VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = Conexao.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try {
+            conexao = ConexaoDAO.conector(); // Conectar ao banco de dados
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, usuario.getIdUsuario());
+            pst.setString(2, usuario.getLogin());
             
-            stmt.setInt(1, usuario.getIdUsuario());
-            stmt.setString(2, usuario.getLogin());
-            stmt.setString(3, usuario.getSenha());
-            stmt.setString(4, usuario.getUsuario());
-            
-            stmt.executeUpdate();
+            pst.setString(3, usuario.getUsuario());
+            pst.setString(4, usuario.getSenha());
+
+            pst.executeUpdate(); // Executa a inserção no banco
+            JOptionPane.showMessageDialog(null, "Usuário adicionado com sucesso!");
 
         } catch (SQLException e) {
-            
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar usuário: " + e.getMessage());
+        } finally {
+            try {
+                if (pst != null) pst.close();
+                if (conexao != null) conexao.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
+    // Método para editar um usuário no banco
+    public void editarUsuario(UsuarioDTO usuario) {
+        String sql = "UPDATE usuarios SET nome = ?, email = ?, nome_usuario = ?, senha = ? WHERE id_usuario = ?";
+
+        try {
+            conexao = ConexaoDAO.conector();
+            pst = conexao.prepareStatement(sql);
+            
+            pst.setString(1, usuario.getLogin());
+            pst.setString(2, usuario.getUsuario());
+            pst.setString(3, usuario.getSenha());
+            pst.setInt(4, usuario.getIdUsuario());
+
+            int atualizado = pst.executeUpdate();
+            if (atualizado > 0) {
+                JOptionPane.showMessageDialog(null, "Usuário atualizado com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro ao atualizar usuário.");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao editar usuário: " + e.getMessage());
+        } finally {
+            try {
+                if (pst != null) pst.close();
+                if (conexao != null) conexao.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // Método para listar todos os usuários do banco
     public List<UsuarioDTO> listarUsuarios() {
         String sql = "SELECT * FROM usuarios";
         List<UsuarioDTO> usuarios = new ArrayList<>();
 
-        try (Connection conn = Conexao.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try {
+            conexao = ConexaoDAO.conector();
+            pst = conexao.prepareStatement(sql);
+            rs = pst.executeQuery();
 
             while (rs.next()) {
                 UsuarioDTO usuario = new UsuarioDTO();
-                usuario.setIdUsuario(rs.getInt("id"));
-                usuario.setUsuario(rs.getString("nome"));
-                usuario.setLogin(rs.getString("login"));
+                usuario.setIdUsuario(rs.getInt("id_usuario"));
+                usuario.setUsuario(rs.getString("nome_usuario"));
                 usuario.setSenha(rs.getString("senha"));
+                usuario.setLogin("login");
                 usuarios.add(usuario);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+                if (conexao != null) conexao.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return usuarios;
     }
 
-    public void editar(UsuarioDTO objUsuarioDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    // Método para realizar o login de um usuário
+    public boolean logar(UsuarioDTO objUsuarioDTO) {
+        String sql = "SELECT * FROM tb_usuarios WHERE login = ? and senha = ?";
+        conexao = ConexaoDAO.conector();
+        try {
+            // preparar a consulta no banco em função ao que foi inserido nas caixas de texto
+            
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, objUsuarioDTO.getLogin());
+            pst.setString(2, objUsuarioDTO.getSenha());
+            
+            //execulta a query 
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                
+                String Perfil = rs.getString(5);
+                // Login bem-sucedido
+                return true;
+                
+                // tratamento de perfil 
+                
+                
+                  
+                  
+                
+                
+            } else {
+                // Login falhou
+                JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos.");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao logar: " + e.getMessage());
+            return false;
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+                if (conexao != null) conexao.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    public void logar(UsuarioDTO objusuarioDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    // Método para deletar um usuário
+    public void deletarUsuario(int idUsuario) {
+        String sql = "DELETE FROM usuarios WHERE id_usuario = ?";
+        try {
+            conexao = ConexaoDAO.conector();
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, idUsuario);
 
-    
+            int deletado = pst.executeUpdate();
+            if (deletado > 0) {
+                JOptionPane.showMessageDialog(null, "Usuário deletado com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro ao deletar usuário.");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao deletar usuário: " + e.getMessage());
+        } finally {
+            try {
+                if (pst != null) pst.close();
+                if (conexao != null) conexao.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        
+    }
 }
-

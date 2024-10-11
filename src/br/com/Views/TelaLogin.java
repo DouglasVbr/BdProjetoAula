@@ -159,8 +159,8 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-         String login_usuario = new txtUsuario.getText();
-         String senha_usuario = new txtSenha.getText();
+         String login_usuario =  txtUsuario.getText();
+         String senha_usuario =  txtSenha.getText();
          
          UsuarioDTO objusuarioDTO = new UsuarioDTO();
          objusuarioDTO.setLogin(login_usuario);

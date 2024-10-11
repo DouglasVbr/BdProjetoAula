@@ -17,7 +17,7 @@ public class ConexaoDAO {
 
         String driver = "com.mysql.jdbc.Driver";
 
-        String url = "jdbc:mysql://localhost:3306/bdprojetoaula";
+        String url = "jdbc:mysql://localhost:3306/ProjetoFinal";
 
         String user = "root";
 

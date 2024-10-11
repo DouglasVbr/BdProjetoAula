@@ -1,10 +1,7 @@
 
 package DTO;
 
-/**
- *
- * @author Joel
- */
+
 public class ClienteDTO {
     private String nome;
     private String endereco;

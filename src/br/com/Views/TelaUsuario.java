@@ -220,7 +220,7 @@ public class TelaUsuario extends javax.swing.JFrame {
        objUsuarioDTO.setSenha(senha_usuario);
        
        UsuarioDAO objUsuarioDAO = new UsuarioDAO();
-       objUsuarioDAO.editar(objUsuarioDTO);
+       objUsuarioDAO.editarUsuario(objUsuarioDTO);
        
        
     }//GEN-LAST:event_btnEditarActionPerformed

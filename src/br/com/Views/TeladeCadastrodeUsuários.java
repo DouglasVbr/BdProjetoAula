@@ -27,11 +27,14 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
     }
     
     private void carregarUsuariosDoBanco() {
-        try (Connection conn = ConexaoDAO.conector()) {
+         try (Connection conn = ConexaoDAO.conector()) {
+        if (conn != null) { // Verifica se a conexão foi estabelecida
             String sql = "SELECT * FROM usuarios";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-            
+
+            listaUsuarios.clear(); // Limpa a lista antes de carregar novos usuários
+
             while (rs.next()) {
                 UsuarioDTO usuario = new UsuarioDTO(
                     rs.getString("nome"),
@@ -41,9 +44,13 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
                 );
                 listaUsuarios.add(usuario);
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao carregar usuários do banco de dados: " + e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(this, "Conexão com o banco de dados falhou!");
         }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Erro ao carregar usuários do banco de dados: " + e.getMessage());
+        e.printStackTrace(); // Para obter detalhes no console
+    }
     }
 
     /**
