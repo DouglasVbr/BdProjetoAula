@@ -42,6 +42,8 @@ public class TeladeCadastrodeClientes extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela Cliente");
+        setResizable(false);
 
         LabelNome.setText("Nome");
 
@@ -174,6 +176,7 @@ public class TeladeCadastrodeClientes extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNomeActionPerformed
@@ -257,8 +260,10 @@ public class TeladeCadastrodeClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-         limparCampos();
-        JOptionPane.showMessageDialog(this, "Operação cancelada.");
+         limparCampos(); // Limpa os campos
+    JOptionPane.showMessageDialog(this, "Operação cancelada."); // Mostra a mensagem
+    this.dispose(); // Fecha a janela
+        
 }
 
 private void limparCampos() {

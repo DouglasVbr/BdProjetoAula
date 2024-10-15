@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import br.com.Views.TelaPrincipal;
-import br.com.Views.TelaUsuario;
+//import br.com.Views.TelaUsuario;
 import br.com.Views.TeladeCadastrodeUsuários;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
@@ -23,7 +23,7 @@ public class UsuarioDAO {
 
     // Método para adicionar um usuário no banco
     public void adicionarUsuario(UsuarioDTO usuario) {
-        String sql = "INSERT INTO usuarios (id_usuario, nome, email, nome_usuario, senha) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO tb_usuarios (id_usuario, nome, email, nome_usuario, senha) VALUES (?, ?, ?, ?, ?)";
 
         try {
             conexao = ConexaoDAO.conector(); // Conectar ao banco de dados
@@ -33,6 +33,7 @@ public class UsuarioDAO {
             
             pst.setString(3, usuario.getUsuario());
             pst.setString(4, usuario.getSenha());
+            pst.setString(5, usuario.getPerfil());
 
             pst.executeUpdate(); // Executa a inserção no banco
             JOptionPane.showMessageDialog(null, "Usuário adicionado com sucesso!");
@@ -51,7 +52,7 @@ public class UsuarioDAO {
 
     // Método para editar um usuário no banco
     public void editarUsuario(UsuarioDTO usuario) {
-        String sql = "UPDATE usuarios SET nome = ?, email = ?, nome_usuario = ?, senha = ? WHERE id_usuario = ?";
+        String sql = "UPDATE tb_usuarios SET nome = ?, email = ?, nome_usuario = ?, senha = ? WHERE id_usuario = ?";
 
         try {
             conexao = ConexaoDAO.conector();
@@ -61,6 +62,8 @@ public class UsuarioDAO {
             pst.setString(2, usuario.getUsuario());
             pst.setString(3, usuario.getSenha());
             pst.setInt(4, usuario.getIdUsuario());
+            pst.setString(5, usuario.getPerfil());
+            
 
             int atualizado = pst.executeUpdate();
             if (atualizado > 0) {
@@ -83,7 +86,7 @@ public class UsuarioDAO {
 
     // Método para listar todos os usuários do banco
     public List<UsuarioDTO> listarUsuarios() {
-        String sql = "SELECT * FROM usuarios";
+        String sql = "SELECT * FROM tb_usuarios";
         List<UsuarioDTO> usuarios = new ArrayList<>();
 
         try {
@@ -97,6 +100,8 @@ public class UsuarioDAO {
                 usuario.setUsuario(rs.getString("nome_usuario"));
                 usuario.setSenha(rs.getString("senha"));
                 usuario.setLogin("login");
+                usuario.setPerfil("Perfil");
+                
                 usuarios.add(usuario);
             }
         } catch (SQLException e) {
@@ -162,7 +167,7 @@ public class UsuarioDAO {
 
     // Método para deletar um usuário
     public void deletarUsuario(int idUsuario) {
-        String sql = "DELETE FROM usuarios WHERE id_usuario = ?";
+        String sql = "DELETE FROM tb_usuarios WHERE id_usuario = ?";
         try {
             conexao = ConexaoDAO.conector();
             pst = conexao.prepareStatement(sql);

@@ -38,42 +38,7 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }
     
-    private void logar() {
-
-    String sql = "select * from tb_usuarios where login = ? and senha = ? ";
-    try {
-
-        // preparar a consulta no banco,  em função ao que foi inserido nas caixas de texto
-        pst = conexao.prepareStatement(sql);
-        pst.setString(1, txtUsuario.getText());
-        pst.setString(2, txtSenha.getText());
-
-        // executar a query 
-        rs = pst.executeQuery();
-        // verifica se existe usuario 
-        if (rs.next()) {
-            // Fechar a tela de login antes de abrir a tela principal
-            this.dispose();
-            TelaPrincipal Principal = new TelaPrincipal();
-            Principal.setVisible(true);
-            
-        } else {
-            JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválidos");
-        }
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Método logar: " + e);
-    } finally {
-        // Fechar o ResultSet, PreparedStatement e conexão
-        try {
-            if (rs != null) rs.close();
-            if (pst != null) pst.close();
-            if (conexao != null) conexao.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-}
+    
 
 
     /**
@@ -159,18 +124,24 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-         String login_usuario =  txtUsuario.getText();
-         String senha_usuario =  txtSenha.getText();
-         
-         UsuarioDTO objusuarioDTO = new UsuarioDTO();
-         objusuarioDTO.setLogin(login_usuario);
-         objusuarioDTO.setSenha(senha_usuario);
-         
-         UsuarioDAO objUsuarioDAO = new UsuarioDAO();
-         objUsuarioDAO.logar(objusuarioDTO);
-        
-        this.dispose();
-        logar();
+         String login_usuario = txtUsuario.getText();
+    String senha_usuario = txtSenha.getText();
+    
+    UsuarioDTO objusuarioDTO = new UsuarioDTO();
+    objusuarioDTO.setLogin(login_usuario);
+    objusuarioDTO.setSenha(senha_usuario);
+    
+    UsuarioDAO objUsuarioDAO = new UsuarioDAO();
+    
+    // Chame o método logar e verifique o resultado
+    if (logar(objusuarioDTO)) {
+        // Login bem-sucedido, abra a tela principal
+        new TelaPrincipal().setVisible(true); // Substitua por sua tela principal
+        this.dispose(); // Fecha a tela de login
+    } else {
+        // Login falhou, você pode exibir uma mensagem ou manter a tela de login aberta
+        JOptionPane.showMessageDialog(this, "Usuário ou senha inválidos.");
+    }
         
 
 
@@ -219,6 +190,57 @@ public class TelaLogin extends javax.swing.JFrame {
     public static javax.swing.JTextField txtSenha;
     public static javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private boolean logar (UsuarioDTO objUsuarioDTO) {
+        
+        String sql = "SELECT * FROM tb_usuarios WHERE login = ? and senha = ?";
+        conexao = ConexaoDAO.conector();
+        try {
+            // preparar a consulta no banco em função ao que foi inserido nas caixas de texto
+            
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, objUsuarioDTO.getLogin());
+            pst.setString(2, objUsuarioDTO.getSenha());
+            
+            //execulta a query 
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                
+                String Perfil = rs.getString(5);
+                // Login bem-sucedido
+                return true;
+                
+                // tratamento de perfil 
+                
+                
+                  
+                  
+                
+                
+            } else {
+                // Login falhou
+                JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos.");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao logar: " + e.getMessage());
+            return false;
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+                if (conexao != null) conexao.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+
+    }
+
+    
 
 }
 

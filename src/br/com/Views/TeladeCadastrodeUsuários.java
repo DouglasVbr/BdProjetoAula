@@ -3,6 +3,8 @@ package br.com.Views;
 
 import DTO.UsuarioDTO;
 import br.com.DAO.ConexaoDAO;
+import static br.com.Views.TelaLogin.txtSenha;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,26 +12,73 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Joel
- */
+
 public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
+    
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
     
     private ArrayList<UsuarioDTO> listaUsuarios = new ArrayList<>();
 
-    /**
-     * Creates new form TeladeCadastrodeUsuários
-     */
+    
     public TeladeCadastrodeUsuários() {
         initComponents();
         carregarUsuariosDoBanco();
     }
     
+    public void InserirUsuario(UsuarioDTO objUsuarioDTO){
+     String sql = "insert into tb_usuario (id_usuario, usuario, login, senha)" + "values (?, ? ,?, ?, ?)";
+     conexao = ConexaoDAO.conector();
+     
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, objUsuarioDTO.getIdUsuario());
+            pst.setString(2, objUsuarioDTO.getUsuario() );
+            pst.setString(3, objUsuarioDTO.getLogin());
+            pst.setString(4, objUsuarioDTO.getSenha());
+            pst.setString(5, objUsuarioDTO.getPerfil());
+            
+            
+            
+            
+        } catch (Exception e) {
+            
+        }
+    
+    }
+    
+    public void Pesquisa(UsuarioDTO objUsuarioDTO){
+        
+        String sql = "select * from tb_usuarios where id_usuario = ?";
+        conexao = ConexaoDAO.conector();
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setInt(1, objUsuarioDTO.getIdUsuario());
+            rs = pst.executeQuery();
+            
+            if(rs.next()){
+              
+                txtEmail.setText(rs.getString(2));
+                txtNome.setText(rs.getString(3));
+                txtSenha.setText(rs.getString(4));
+                txtNomeUsu.setText(rs.getString(5));
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Usuário não cadastrado!");
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Método Pesquisar" + e);
+        }
+        
+        
+    }
+    
     private void carregarUsuariosDoBanco() {
          try (Connection conn = ConexaoDAO.conector()) {
         if (conn != null) { // Verifica se a conexão foi estabelecida
-            String sql = "SELECT * FROM usuarios";
+            String sql = "SELECT * FROM tb_usuarios";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 
@@ -37,10 +86,13 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
 
             while (rs.next()) {
                 UsuarioDTO usuario = new UsuarioDTO(
-                    rs.getString("nome"),
-                    rs.getString("email"),
-                    rs.getString("nomeDeUsuario"),
-                    rs.getString("senha")
+                    rs.getString("id_usuario"),
+                    rs.getString("usuario"),
+                    rs.getString("login"),
+                    rs.getInt("senha"),
+                    rs.getString("Perfil")
+                        
+                    
                 );
                 listaUsuarios.add(usuario);
             }
@@ -66,16 +118,19 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
         lblEmail = new javax.swing.JLabel();
         lblNomeUsu = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
-        TextFieldNome = new javax.swing.JTextField();
-        TextFieldEmail = new javax.swing.JTextField();
-        TextFieldNomeUsu = new javax.swing.JTextField();
-        PasswordSenha = new javax.swing.JPasswordField();
+        txtNome = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtNomeUsu = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JPasswordField();
         btnInserir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela Usuario");
+        setResizable(false);
 
         lblNome.setText("Nome");
 
@@ -85,27 +140,27 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
 
         lblSenha.setText("Senha");
 
-        TextFieldNome.addActionListener(new java.awt.event.ActionListener() {
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldNomeActionPerformed(evt);
+                txtNomeActionPerformed(evt);
             }
         });
 
-        TextFieldEmail.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldEmailActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
 
-        TextFieldNomeUsu.addActionListener(new java.awt.event.ActionListener() {
+        txtNomeUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldNomeUsuActionPerformed(evt);
+                txtNomeUsuActionPerformed(evt);
             }
         });
 
-        PasswordSenha.addActionListener(new java.awt.event.ActionListener() {
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordSenhaActionPerformed(evt);
+                txtSenhaActionPerformed(evt);
             }
         });
 
@@ -137,6 +192,13 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
             }
         });
 
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,10 +217,10 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldNomeUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNomeUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(btnInserir)
@@ -167,8 +229,10 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addComponent(btnExcluir)
                         .addGap(11, 11, 11)
-                        .addComponent(btnCancelar)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addComponent(btnCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPesquisar)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,52 +240,54 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(lblNome)
                 .addGap(1, 1, 1)
-                .addComponent(TextFieldNome, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblEmail)
                 .addGap(1, 1, 1)
-                .addComponent(TextFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNomeUsu)
                 .addGap(3, 3, 3)
-                .addComponent(TextFieldNomeUsu, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(txtNomeUsu, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PasswordSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInserir)
                     .addComponent(btnEditar)
                     .addComponent(btnExcluir)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnPesquisar))
                 .addGap(22, 22, 22))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNomeActionPerformed
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldNomeActionPerformed
+    }//GEN-LAST:event_txtNomeActionPerformed
 
-    private void TextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldEmailActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldEmailActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void TextFieldNomeUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNomeUsuActionPerformed
+    private void txtNomeUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeUsuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldNomeUsuActionPerformed
+    }//GEN-LAST:event_txtNomeUsuActionPerformed
 
-    private void PasswordSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordSenhaActionPerformed
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordSenhaActionPerformed
+    }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-          String nome = TextFieldNome.getText();
-        String email = TextFieldEmail.getText();
-        String nomeDeUsuario = TextFieldNomeUsu.getText();
-        String senha = new String(PasswordSenha.getPassword());
+          String nome = txtNome.getText();
+        String email = txtEmail.getText();
+        String nomeDeUsuario = txtNomeUsu.getText();
+        String senha = new String(txtSenha.getPassword());
 
         if (nome.isEmpty() || nomeDeUsuario.isEmpty() || senha.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Nome, Nome de Usuário e Senha são obrigatórios!");
@@ -236,7 +302,7 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
         }
 
         try (Connection conn = ConexaoDAO.conector()) {
-            String sql = "INSERT INTO usuarios (nome, email, nomeDeUsuario, senha) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO tb_usuarios (id_usuario, usuario, login, senha) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, nome);
             stmt.setString(2, email);
@@ -245,7 +311,7 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(this, "Usuário inserido com sucesso!");
-            listaUsuarios.add(new UsuarioDTO ("nome", "email", "nomeDeUsuario","senha"));
+            listaUsuarios.add(new UsuarioDTO ("nome", "email", "nomeDeUsuario", "senha"));
             limparCampos();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Erro ao inserir usuário no banco de dados: " + e.getMessage());
@@ -254,14 +320,14 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-         String nomeDeUsuario = TextFieldNomeUsu.getText();
+         String nomeDeUsuario = txtNomeUsu.getText();
 
         try (Connection conn = ConexaoDAO.conector()) {
-            String sql = "UPDATE usuarios SET nome = ?, email = ?, senha = ? WHERE nomeDeUsuario = ?";
+            String sql = "UPDATE tb_usuarios SET nome = ?, email = ?, senha = ? WHERE nomeDeUsuario = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, TextFieldNome.getText());
-            stmt.setString(2, TextFieldEmail.getText());
-            stmt.setString(3, new String(PasswordSenha.getPassword()));
+            stmt.setString(1, txtNome.getText());
+            stmt.setString(2, txtEmail.getText());
+            stmt.setString(3, new String(txtSenha.getPassword()));
             stmt.setString(4, nomeDeUsuario);
 
             if (stmt.executeUpdate() > 0) {
@@ -277,7 +343,7 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-           String nomeDeUsuario = TextFieldNomeUsu.getText();
+           String nomeDeUsuario = txtNomeUsu.getText();
 
     if(nomeDeUsuario.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Nome de Usuário é obrigatório!");
@@ -310,12 +376,23 @@ public class TeladeCadastrodeUsuários extends javax.swing.JFrame {
 }
 
 private void limparCampos() {
-    TextFieldNome.setText("");
-    TextFieldEmail.setText("");
-    TextFieldNomeUsu.setText("");
-    PasswordSenha.setText("");
+    txtNome.setText("");
+    txtEmail.setText("");
+    txtNomeUsu.setText("");
+    txtSenha.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        Pesquisa();
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    public void limpar(){
+    
+        txtNome.setText(null);
+        txtSenha.setText(null);
+        txtEmail.setText(null);
+        txtNomeUsu.setText(null);
+    }
     /**
      * @param args the command line arguments
      */
@@ -352,19 +429,24 @@ private void limparCampos() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField PasswordSenha;
-    private javax.swing.JTextField TextFieldEmail;
-    private javax.swing.JTextField TextFieldNome;
-    private javax.swing.JTextField TextFieldNomeUsu;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnInserir;
+    public static javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNomeUsu;
     private javax.swing.JLabel lblSenha;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNomeUsu;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
+
+    private void Pesquisa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
    
 }
