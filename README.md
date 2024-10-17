@@ -14,7 +14,7 @@
 - [Projeto Final](#1-Projeto-Final)
 - [Participantes](#2-Participantes)
 - [Índice](#3-índice)
-- [Descrição do Projeto](#4-Descrição-do-Projeto)
+- [Descrição-do-Projeto](#4-Descrição-do-Projeto)
 - [Badges](#5-Badges)
 - [Tecnologias Utilizadas](#6-tecnologias-utilizadas)
 - [IDEs/Editores Utilizados](#7-ideseditores-utilizados)
