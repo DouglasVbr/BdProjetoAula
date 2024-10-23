@@ -4,8 +4,8 @@
 # BdProjetoAula
 
 # alterações no banco 
-![image](https://github.com/user-attachments/assets/df7363c2-fa4d-4a64-8714-005a70f8a839)
-![image](https://github.com/user-attachments/assets/47760d91-a029-4156-a472-99834a51ac17)
+![telabanco2](https://github.com/user-attachments/assets/58c9f287-2382-49c5-9396-4ad7307b1ab7)
+![telabanco1](https://github.com/user-attachments/assets/b5638fa1-199a-4535-9706-d9d6011a5fac)
 # Projeto Final
 
 
