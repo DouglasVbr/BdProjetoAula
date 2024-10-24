@@ -31,20 +31,20 @@ public class TelaAgenda extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        lblDataAgenda = new javax.swing.JLabel();
         txtAno = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbAgenda = new javax.swing.JTable();
+        tbAgendaCli = new javax.swing.JTable();
         txtHora = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        lblHorarioAgenda = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnOut = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblTituloAgendaCli = new javax.swing.JLabel();
         txtDesc = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblDescricaoAgenda = new javax.swing.JLabel();
+        lblIDAgenda = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lblNomeCliAgenda = new javax.swing.JLabel();
         txtNomeCli = new javax.swing.JTextField();
         btnEdit = new javax.swing.JButton();
         btnRemove = new javax.swing.JButton();
@@ -57,15 +57,15 @@ public class TelaAgenda extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(102, 0, 102));
         jPanel1.setForeground(new java.awt.Color(255, 153, 0));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel4.setText("data");
+        lblDataAgenda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblDataAgenda.setForeground(new java.awt.Color(255, 255, 0));
+        lblDataAgenda.setText("data");
 
-        tbAgenda.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        tbAgenda.setModel(new javax.swing.table.DefaultTableModel(
+        tbAgendaCli.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tbAgendaCli.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -79,7 +79,7 @@ public class TelaAgenda extends javax.swing.JFrame {
                 "id", "data", "hora", "descrição", "cliente"
             }
         ));
-        jScrollPane1.setViewportView(tbAgenda);
+        jScrollPane1.setViewportView(tbAgendaCli);
 
         txtHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,9 +87,9 @@ public class TelaAgenda extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel5.setText("horario");
+        lblHorarioAgenda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblHorarioAgenda.setForeground(new java.awt.Color(255, 255, 0));
+        lblHorarioAgenda.setText("horario");
 
         btnAdd.setBackground(new java.awt.Color(255, 255, 0));
         btnAdd.setForeground(new java.awt.Color(255, 204, 0));
@@ -101,32 +101,32 @@ public class TelaAgenda extends javax.swing.JFrame {
         });
 
         btnOut.setBackground(new java.awt.Color(255, 255, 0));
-        btnOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back.png"))); // NOI18N
+        btnOut.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joel\\Desktop\\POO2\\projetofinal\\src\\img\\deixou.png")); // NOI18N
         btnOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOutActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Agenda de Clientes");
+        lblTituloAgendaCli.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        lblTituloAgendaCli.setForeground(new java.awt.Color(255, 255, 0));
+        lblTituloAgendaCli.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTituloAgendaCli.setText("Agenda de Clientes");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel3.setText("descrição:");
+        lblDescricaoAgenda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblDescricaoAgenda.setForeground(new java.awt.Color(255, 255, 0));
+        lblDescricaoAgenda.setText("descrição:");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel6.setText("id da agenda");
+        lblIDAgenda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblIDAgenda.setForeground(new java.awt.Color(255, 255, 0));
+        lblIDAgenda.setText("id da agenda");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel7.setText("nome do cliente");
+        lblNomeCliAgenda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblNomeCliAgenda.setForeground(new java.awt.Color(255, 255, 0));
+        lblNomeCliAgenda.setText("nome do cliente");
 
         btnEdit.setBackground(new java.awt.Color(255, 255, 0));
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joel\\Desktop\\POO2\\projetofinal\\src\\img\\editar.png")); // NOI18N
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
@@ -134,7 +134,7 @@ public class TelaAgenda extends javax.swing.JFrame {
         });
 
         btnRemove.setBackground(new java.awt.Color(255, 255, 0));
-        btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/remove.png"))); // NOI18N
+        btnRemove.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joel\\Desktop\\POO2\\projetofinal\\src\\img\\excluir.png")); // NOI18N
         btnRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoveActionPerformed(evt);
@@ -171,7 +171,7 @@ public class TelaAgenda extends javax.swing.JFrame {
                                     .addGap(21, 21, 21)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
+                                            .addComponent(lblDataAgenda)
                                             .addGap(10, 10, 10)
                                             .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(4, 4, 4)
@@ -183,7 +183,7 @@ public class TelaAgenda extends javax.swing.JFrame {
                                             .addGap(6, 6, 6)
                                             .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
+                                            .addComponent(lblHorarioAgenda)
                                             .addGap(4, 4, 4)
                                             .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(4, 4, 4)
@@ -196,41 +196,41 @@ public class TelaAgenda extends javax.swing.JFrame {
                                             .addGap(14, 14, 14)
                                             .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(8, 8, 8)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel7))
+                                        .addComponent(lblIDAgenda)
+                                        .addComponent(lblNomeCliAgenda))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(286, 286, 286)
-                                    .addComponent(btnOut, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(31, 31, 31)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(lblDescricaoAgenda)
+                                        .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(263, 263, 263)
+                                    .addComponent(btnOut, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(90, 90, 90)
-                        .addComponent(jLabel2)))
+                        .addComponent(lblTituloAgendaCli)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTituloAgendaCli, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(jLabel3)
+                        .addComponent(lblDescricaoAgenda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -238,41 +238,37 @@ public class TelaAgenda extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
+                            .addComponent(lblIDAgenda)
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
+                            .addComponent(lblNomeCliAgenda)
                             .addComponent(txtNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
+                                .addGap(3, 3, 3)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel8))))
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel10))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lblDataAgenda)
+                                    .addComponent(jLabel8))))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRemove)))))
+                                .addGap(3, 3, 3)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblHorarioAgenda)
+                                    .addComponent(jLabel10))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addGap(23, 23, 23))
         );
 
@@ -450,17 +446,17 @@ public class TelaAgenda extends javax.swing.JFrame {
     private javax.swing.JButton btnRemove;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JTable tbAgenda;
+    private javax.swing.JLabel lblDataAgenda;
+    private javax.swing.JLabel lblDescricaoAgenda;
+    private javax.swing.JLabel lblHorarioAgenda;
+    private javax.swing.JLabel lblIDAgenda;
+    private javax.swing.JLabel lblNomeCliAgenda;
+    private javax.swing.JLabel lblTituloAgendaCli;
+    public static javax.swing.JTable tbAgendaCli;
     public static javax.swing.JTextField txtAno;
     public static javax.swing.JTextField txtDesc;
     public static javax.swing.JTextField txtDia;

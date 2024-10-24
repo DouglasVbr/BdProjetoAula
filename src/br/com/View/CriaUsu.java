@@ -37,19 +37,19 @@ public class CriaUsu extends javax.swing.JFrame {
         try {
             pst = conexao.prepareStatement(sql);
 
-            if (txtNome.getText().isEmpty()) {
+            if (txtNomeRegistrar.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha a area de nome.");
-            } else if (txtMail.getText().isEmpty()) {
+            } else if (txtEmailRegistrar.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha a area de Email");
-            } else if (txtNomeUsu.getText().isEmpty()) {
+            } else if (txtNomeUsuRegistrar.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha a area de nome de usuario");
-            } else if (txtPass.getText().isEmpty()) {
+            } else if (txtPassRegistrar.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Preencha a area de senha");
             } else {
-                pst.setString(1, txtNome.getText());
-                pst.setString(2, txtMail.getText());
-                pst.setString(3, txtNomeUsu.getText());
-                pst.setString(4, txtPass.getText());
+                pst.setString(1, txtNomeRegistrar.getText());
+                pst.setString(2, txtEmailRegistrar.getText());
+                pst.setString(3, txtNomeUsuRegistrar.getText());
+                pst.setString(4, txtPassRegistrar.getText());
             }
 
             int add = pst.executeUpdate();
@@ -82,67 +82,74 @@ public class CriaUsu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtPass = new javax.swing.JTextField();
-        btnCreate = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
-        txtMail = new javax.swing.JTextField();
-        txtNomeUsu = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        lblTituloRegistresuaConta = new javax.swing.JLabel();
+        txtPassRegistrar = new javax.swing.JTextField();
+        btnCriarConta = new javax.swing.JButton();
+        lblNomeNovo = new javax.swing.JLabel();
+        lblEmailNovo = new javax.swing.JLabel();
+        lblNomeDUsuNovo = new javax.swing.JLabel();
+        lblSenhaNova = new javax.swing.JLabel();
+        txtNomeRegistrar = new javax.swing.JTextField();
+        txtEmailRegistrar = new javax.swing.JTextField();
+        txtNomeUsuRegistrar = new javax.swing.JTextField();
+        lblIDDUsuNovo = new javax.swing.JLabel();
+        txtIdRegistrar = new javax.swing.JTextField();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("criar usuario");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 0, 102));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Registre sua conta!");
+        lblTituloRegistresuaConta.setBackground(new java.awt.Color(102, 0, 102));
+        lblTituloRegistresuaConta.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        lblTituloRegistresuaConta.setForeground(new java.awt.Color(255, 255, 0));
+        lblTituloRegistresuaConta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTituloRegistresuaConta.setText("Registre sua conta!");
 
-        txtPass.addActionListener(new java.awt.event.ActionListener() {
+        txtPassRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassActionPerformed(evt);
+                txtPassRegistrarActionPerformed(evt);
             }
         });
 
-        btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/create_account.png"))); // NOI18N
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+        btnCriarConta.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joel\\Desktop\\POO2\\projetofinal\\src\\img\\adicionar-cliente.png")); // NOI18N
+        btnCriarConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
+                btnCriarContaActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel2.setText("Nome");
+        lblNomeNovo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblNomeNovo.setForeground(new java.awt.Color(102, 0, 102));
+        lblNomeNovo.setText("Nome");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel3.setText("e-mail");
+        lblEmailNovo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblEmailNovo.setForeground(new java.awt.Color(102, 0, 102));
+        lblEmailNovo.setText("e-mail");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel4.setText("nome de usuario");
+        lblNomeDUsuNovo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblNomeDUsuNovo.setForeground(new java.awt.Color(102, 0, 102));
+        lblNomeDUsuNovo.setText("nome de usuario");
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel5.setText("senha da conta");
+        lblSenhaNova.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblSenhaNova.setForeground(new java.awt.Color(102, 0, 102));
+        lblSenhaNova.setText("senha da conta");
 
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
+        txtNomeRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
+                txtNomeRegistrarActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel6.setText("Id de usuario:");
+        lblIDDUsuNovo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblIDDUsuNovo.setForeground(new java.awt.Color(102, 0, 102));
+        lblIDDUsuNovo.setText("Id de usuario:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joel\\Desktop\\POO2\\projetofinal\\src\\img\\deixou.png")); // NOI18N
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
 
@@ -156,86 +163,89 @@ public class CriaUsu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtNomeUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(13, 13, 13))
+                                .addComponent(lblEmailNovo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtEmailRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(330, 330, 330)))
-                        .addContainerGap(99, Short.MAX_VALUE))
+                                .addComponent(lblNomeNovo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNomeRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNomeDUsuNovo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNomeUsuRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(lblSenhaNova)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPassRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(lblTituloRegistresuaConta)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(lblIDDUsuNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(162, 162, 162)
-                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(txtIdRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(btnCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jLabel1)
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtNomeUsu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblTituloRegistresuaConta)
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNomeNovo)
+                            .addComponent(txtNomeRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblEmailNovo)
+                            .addComponent(txtEmailRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNomeUsuRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNomeDUsuNovo))
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblSenhaNova)
+                            .addComponent(txtPassRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtIdRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIDDUsuNovo)
+                    .addComponent(btnCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-         if(txtNome.getText().isEmpty()){
+    private void btnCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarContaActionPerformed
+         if(txtNomeRegistrar.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Preencha a area de nome");
-            } else if(txtMail.getText().isEmpty()){
+            } else if(txtEmailRegistrar.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Preencha a area de email");
-            } else if(txtNomeUsu.getText().isEmpty()){
+            } else if(txtNomeUsuRegistrar.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Preencha a area de nome de usuario");
-            } else if(txtPass.getText().isEmpty()){
+            } else if(txtPassRegistrar.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Preencha a area de senha");
-            } else if(txtId.getText().isEmpty()){
+            } else if(txtIdRegistrar.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Preencha a area de ID");
             } else {
         
-                int idUsu = Integer.parseInt(txtId.getText());
-                String nomeUsu= txtNome.getText();
-                String mailUsu= txtMail.getText();
-                String nome_usuarioUsu= txtNomeUsu.getText();
-                String pass= txtPass.getText();
+                int idUsu = Integer.parseInt(txtIdRegistrar.getText());
+                String nomeUsu= txtNomeRegistrar.getText();
+                String mailUsu= txtEmailRegistrar.getText();
+                String nome_usuarioUsu= txtNomeUsuRegistrar.getText();
+                String pass= txtPassRegistrar.getText();
                 
                 UsuarioDTO dto = new UsuarioDTO();
                 
@@ -253,21 +263,21 @@ public class CriaUsu extends javax.swing.JFrame {
                 }
                 
             }
-    }//GEN-LAST:event_btnCreateActionPerformed
+    }//GEN-LAST:event_btnCriarContaActionPerformed
 
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+    private void txtNomeRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeRegistrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
+    }//GEN-LAST:event_txtNomeRegistrarActionPerformed
 
-    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
+    private void txtPassRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassRegistrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassActionPerformed
+    }//GEN-LAST:event_txtPassRegistrarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         TelaInicial ini = new TelaInicial();
         ini.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,18 +315,18 @@ public class CriaUsu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreate;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtMail;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNomeUsu;
-    private javax.swing.JTextField txtPass;
+    private javax.swing.JButton btnCriarConta;
+    private javax.swing.JButton btnVoltar;
+    private javax.swing.JLabel lblEmailNovo;
+    private javax.swing.JLabel lblIDDUsuNovo;
+    private javax.swing.JLabel lblNomeDUsuNovo;
+    private javax.swing.JLabel lblNomeNovo;
+    private javax.swing.JLabel lblSenhaNova;
+    private javax.swing.JLabel lblTituloRegistresuaConta;
+    private javax.swing.JTextField txtEmailRegistrar;
+    private javax.swing.JTextField txtIdRegistrar;
+    private javax.swing.JTextField txtNomeRegistrar;
+    private javax.swing.JTextField txtNomeUsuRegistrar;
+    private javax.swing.JTextField txtPassRegistrar;
     // End of variables declaration//GEN-END:variables
 }

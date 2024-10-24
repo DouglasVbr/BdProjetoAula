@@ -30,7 +30,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblTituloTPrincipal = new javax.swing.JLabel();
         ImageIcon icon = new ImageIcon(getClass().getResource("/img/horizonback.jpg"));
         Image img= icon.getImage();
         desktop = new javax.swing.JDesktopPane(){
@@ -53,13 +53,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(102, 0, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 255, 0), new java.awt.Color(153, 51, 255), new java.awt.Color(255, 153, 0), new java.awt.Color(0, 0, 102)));
 
-        jLabel1.setFont(new java.awt.Font("Vijaya", 3, 80)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Sistema de cadastros ");
+        lblTituloTPrincipal.setFont(new java.awt.Font("Vijaya", 3, 80)); // NOI18N
+        lblTituloTPrincipal.setForeground(new java.awt.Color(255, 255, 0));
+        lblTituloTPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTituloTPrincipal.setText("Sistema de cadastros ");
 
         desktop.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 4, true));
 
@@ -74,8 +74,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGap(0, 511, Short.MAX_VALUE)
         );
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joel\\Desktop\\POO2\\projFinal_BD-Java_POO\\src\\img\\parafuso.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -85,8 +83,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(lblTituloTPrincipal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)))
                 .addGap(0, 26, Short.MAX_VALUE))
         );
@@ -96,7 +94,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTituloTPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(desktop)
                 .addContainerGap())
@@ -252,13 +250,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnCadUsu;
     private javax.swing.JMenuItem btnOut;
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblTituloTPrincipal;
     private javax.swing.JMenu opcAgnd;
     // End of variables declaration//GEN-END:variables
 }

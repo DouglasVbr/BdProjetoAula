@@ -14,7 +14,7 @@ public class ClienteDAO {
     ResultSet rs = null;
 
     public void limpar() {
-        CadCli.txtMail.setText(null);
+        CadCli.txtEmail.setText(null);
         CadCli.txtNome.setText(null);
         CadCli.txtEndereco.setText(null);
         CadCli.txtTelefone.setText(null);
@@ -66,7 +66,7 @@ public class ClienteDAO {
                 CadCli.txtNome.setText(rs.getString(2));
                 CadCli.txtEndereco.setText(rs.getString(3));
                 CadCli.txtTelefone.setText(rs.getString(4));
-                CadCli.txtMail.setText(rs.getString(5));
+                CadCli.txtEmail.setText(rs.getString(5));
                 CadCli.txtCpfCnpj.setText(rs.getString(6));
             } else {
                 limpar();

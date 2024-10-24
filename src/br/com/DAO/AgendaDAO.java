@@ -30,7 +30,7 @@ public class AgendaDAO {
         try {
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) TelaAgenda.tbAgenda.getModel();
+            DefaultTableModel model = (DefaultTableModel) TelaAgenda.tbAgendaCli.getModel();
             model.setNumRows(0);
 
             while (rs.next()) {

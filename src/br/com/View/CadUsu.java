@@ -30,13 +30,13 @@ public class CadUsu extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblTituloUsuarios = new javax.swing.JLabel();
+        lblNomeUsu = new javax.swing.JLabel();
+        lblIDUsu = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblEmailUsu = new javax.swing.JLabel();
+        lblNomeDUsu = new javax.swing.JLabel();
+        lblSenha = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtMail = new javax.swing.JTextField();
         txtNomeUsu = new javax.swing.JTextField();
@@ -48,34 +48,44 @@ public class CadUsu extends javax.swing.JInternalFrame {
                 g.drawImage(img,0,0,getWidth(),getHeight(), this);
             }
         };
-        jLabel7 = new javax.swing.JLabel();
-        btnUpd = new javax.swing.JButton();
-        btnRead = new javax.swing.JButton();
-        btnDel = new javax.swing.JButton();
-        btnCreate5 = new javax.swing.JButton();
+        lblTituloFID = new javax.swing.JLabel();
+        btnEditarIDUsu = new javax.swing.JButton();
+        btnPesquisarIDUsu = new javax.swing.JButton();
+        btnDeletarIDUsu = new javax.swing.JButton();
+        btnCriarUsuario = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 204, 204));
+        setBackground(new java.awt.Color(102, 0, 102));
         setBorder(null);
         setClosable(true);
         setTitle("Usuarios");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 3, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 0, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Usuarios ");
+        lblTituloUsuarios.setFont(new java.awt.Font("Arial", 3, 36)); // NOI18N
+        lblTituloUsuarios.setForeground(new java.awt.Color(255, 255, 0));
+        lblTituloUsuarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTituloUsuarios.setText("Usuarios ");
 
-        jLabel2.setText("Nome");
+        lblNomeUsu.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblNomeUsu.setForeground(new java.awt.Color(255, 204, 0));
+        lblNomeUsu.setText("Nome");
 
-        jLabel6.setText("ID");
+        lblIDUsu.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblIDUsu.setForeground(new java.awt.Color(255, 204, 0));
+        lblIDUsu.setText("ID");
 
         txtId.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
-        jLabel3.setText("e-mail");
+        lblEmailUsu.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblEmailUsu.setForeground(new java.awt.Color(255, 204, 0));
+        lblEmailUsu.setText("e-mail");
 
-        jLabel4.setText("nome de usuario");
+        lblNomeDUsu.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblNomeDUsu.setForeground(new java.awt.Color(255, 204, 0));
+        lblNomeDUsu.setText("nome de usuario");
 
-        jLabel5.setText("senha");
+        lblSenha.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblSenha.setForeground(new java.awt.Color(255, 204, 0));
+        lblSenha.setText("senha");
 
         txtNome.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
@@ -85,44 +95,45 @@ public class CadUsu extends javax.swing.JInternalFrame {
 
         txtPass.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
+        jDesktopPane1.setBackground(new java.awt.Color(102, 0, 102));
         jDesktopPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
 
-        jLabel7.setFont(new java.awt.Font("Arial Black", 3, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel7.setText("Funções por ID");
+        lblTituloFID.setFont(new java.awt.Font("Arial Black", 3, 36)); // NOI18N
+        lblTituloFID.setForeground(new java.awt.Color(255, 255, 0));
+        lblTituloFID.setText("Funções por ID");
 
-        btnUpd.setBackground(new java.awt.Color(255, 255, 0));
-        btnUpd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
-        btnUpd.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarIDUsu.setBackground(new java.awt.Color(255, 255, 0));
+        btnEditarIDUsu.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarIDUsu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joel\\Desktop\\POO2\\projetofinal\\src\\img\\editar.png")); // NOI18N
+        btnEditarIDUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdActionPerformed(evt);
+                btnEditarIDUsuActionPerformed(evt);
             }
         });
 
-        btnRead.setBackground(new java.awt.Color(255, 255, 0));
-        btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
-        btnRead.setMaximumSize(new java.awt.Dimension(75, 51));
-        btnRead.setMinimumSize(new java.awt.Dimension(75, 51));
-        btnRead.setPreferredSize(new java.awt.Dimension(75, 51));
-        btnRead.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisarIDUsu.setBackground(new java.awt.Color(255, 255, 0));
+        btnPesquisarIDUsu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joel\\Desktop\\POO2\\projetofinal\\src\\img\\pesquisa.png")); // NOI18N
+        btnPesquisarIDUsu.setMaximumSize(new java.awt.Dimension(75, 51));
+        btnPesquisarIDUsu.setMinimumSize(new java.awt.Dimension(75, 51));
+        btnPesquisarIDUsu.setPreferredSize(new java.awt.Dimension(75, 51));
+        btnPesquisarIDUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReadActionPerformed(evt);
+                btnPesquisarIDUsuActionPerformed(evt);
             }
         });
 
-        btnDel.setBackground(new java.awt.Color(255, 255, 0));
-        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/remove.png"))); // NOI18N
-        btnDel.addActionListener(new java.awt.event.ActionListener() {
+        btnDeletarIDUsu.setBackground(new java.awt.Color(255, 255, 0));
+        btnDeletarIDUsu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joel\\Desktop\\POO2\\projetofinal\\src\\img\\excluir.png")); // NOI18N
+        btnDeletarIDUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelActionPerformed(evt);
+                btnDeletarIDUsuActionPerformed(evt);
             }
         });
 
-        jDesktopPane1.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(btnUpd, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(btnRead, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(btnDel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(lblTituloFID, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(btnEditarIDUsu, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(btnPesquisarIDUsu, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(btnDeletarIDUsu, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -130,35 +141,35 @@ public class CadUsu extends javax.swing.JInternalFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTituloFID, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 53, Short.MAX_VALUE))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnUpd, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEditarIDUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeletarIDUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisarIDUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
+                .addComponent(lblTituloFID)
                 .addGap(18, 18, 18)
-                .addComponent(btnUpd, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditarIDUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDeletarIDUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPesquisarIDUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
 
-        btnCreate5.setBackground(new java.awt.Color(153, 0, 204));
-        btnCreate5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/create.png"))); // NOI18N
-        btnCreate5.addActionListener(new java.awt.event.ActionListener() {
+        btnCriarUsuario.setBackground(new java.awt.Color(153, 0, 204));
+        btnCriarUsuario.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joel\\Desktop\\POO2\\projetofinal\\src\\img\\adicionar-cliente.png")); // NOI18N
+        btnCriarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreate5ActionPerformed(evt);
+                btnCriarUsuarioActionPerformed(evt);
             }
         });
 
@@ -172,11 +183,11 @@ public class CadUsu extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(19, 19, 19)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel2)))
+                                .addComponent(lblIDUsu)
+                                .addComponent(lblEmailUsu)
+                                .addComponent(lblNomeDUsu)
+                                .addComponent(lblSenha)
+                                .addComponent(lblNomeUsu)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGap(9, 9, 9)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,10 +198,10 @@ public class CadUsu extends javax.swing.JInternalFrame {
                                 .addComponent(txtPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(100, 100, 100)
-                        .addComponent(btnCreate5))
+                        .addComponent(btnCriarUsuario))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblTituloUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -199,29 +210,29 @@ public class CadUsu extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTituloUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
+                .addComponent(lblIDUsu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(lblNomeUsu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(lblEmailUsu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(lblNomeDUsu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNomeUsu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addComponent(lblSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnCreate5)
+                .addComponent(btnCriarUsuario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jDesktopPane1)
         );
@@ -229,7 +240,7 @@ public class CadUsu extends javax.swing.JInternalFrame {
         setBounds(0, 0, 909, 509);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdActionPerformed
+    private void btnEditarIDUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarIDUsuActionPerformed
 
         if (txtNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha a area de nome.");
@@ -259,9 +270,9 @@ public class CadUsu extends javax.swing.JInternalFrame {
             dao.atualizar(dto);
 
         }
-    }//GEN-LAST:event_btnUpdActionPerformed
+    }//GEN-LAST:event_btnEditarIDUsuActionPerformed
 
-    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+    private void btnDeletarIDUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarIDUsuActionPerformed
 
         if (txtId.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite um ID a ser deletado");
@@ -275,9 +286,9 @@ public class CadUsu extends javax.swing.JInternalFrame {
             UsuarioDAO dao = new UsuarioDAO();
             dao.deletar(dto);
         }
-    }//GEN-LAST:event_btnDelActionPerformed
+    }//GEN-LAST:event_btnDeletarIDUsuActionPerformed
 
-    private void btnCreate5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate5ActionPerformed
+    private void btnCriarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarUsuarioActionPerformed
 
         if (txtNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha a area de nome");
@@ -308,9 +319,9 @@ public class CadUsu extends javax.swing.JInternalFrame {
             UsuarioDAO dao = new UsuarioDAO();
             dao.criar(dto);
         }
-    }//GEN-LAST:event_btnCreate5ActionPerformed
+    }//GEN-LAST:event_btnCriarUsuarioActionPerformed
 
-    private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
+    private void btnPesquisarIDUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarIDUsuActionPerformed
         if (txtId.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Preencha o ID a ser pesquisado");
         } else {
@@ -324,22 +335,22 @@ public class CadUsu extends javax.swing.JInternalFrame {
             dao.pesquisar(dto);
 
         }
-    }//GEN-LAST:event_btnReadActionPerformed
+    }//GEN-LAST:event_btnPesquisarIDUsuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreate5;
-    private javax.swing.JButton btnDel;
-    private javax.swing.JButton btnRead;
-    private javax.swing.JButton btnUpd;
+    private javax.swing.JButton btnCriarUsuario;
+    private javax.swing.JButton btnDeletarIDUsu;
+    private javax.swing.JButton btnEditarIDUsu;
+    private javax.swing.JButton btnPesquisarIDUsu;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel lblEmailUsu;
+    private javax.swing.JLabel lblIDUsu;
+    private javax.swing.JLabel lblNomeDUsu;
+    private javax.swing.JLabel lblNomeUsu;
+    private javax.swing.JLabel lblSenha;
+    private javax.swing.JLabel lblTituloFID;
+    private javax.swing.JLabel lblTituloUsuarios;
     public static javax.swing.JTextField txtId;
     public static javax.swing.JTextField txtMail;
     public static javax.swing.JTextField txtNome;
